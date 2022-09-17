@@ -10,7 +10,11 @@ const NotesList = () => {
         isSuccess,
         isError,
         error
-    } = useGetNotesQuery()
+    } = useGetNotesQuery(undefined, {
+        pollingInterval: 15000, //15 sec because the notes could be more active more than one person could be working on them so we'll show the most recent data in the list at least every 15 sec
+        refetchOnFocus: true,
+        refetchOnMountOrArgChange: true
+    })
 
     let content
 
