@@ -1,4 +1,3 @@
-import React from 'react'
 import { Outlet, Link } from "react-router-dom"
 import { useEffect, useRef, useState } from 'react'
 import { useRefreshMutation } from "./authApiSlice"
@@ -21,6 +20,7 @@ const PersistLogin = () => {
         isError,
         error
     }] = useRefreshMutation()
+
 
     useEffect(() => {
 
@@ -47,6 +47,7 @@ const PersistLogin = () => {
         // eslint-disable-next-line
     }, [])
 
+
     let content
     if (!persist) { // persist: no
         console.log('no persist')
@@ -58,7 +59,7 @@ const PersistLogin = () => {
         console.log('error')
         content = (
             <p className='errmsg'>
-                {error.data ?.message}
+                {`${error ?.data ?.message} - `}
                 <Link to="/login">Please login again</Link>.
             </p>
         )
@@ -73,5 +74,4 @@ const PersistLogin = () => {
 
     return content
 }
-
 export default PersistLogin

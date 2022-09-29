@@ -3,6 +3,7 @@ import { useGetUsersQuery } from './usersApiSlice'
 import User from './User'
 
 const UsersList = () => {
+
     const {
         data: users,
         isLoading,
@@ -17,7 +18,7 @@ const UsersList = () => {
 
     let content
 
-    if (isLoading) content = <p>Loading ...</p>
+    if (isLoading) content = <p>Loading...</p>
 
     if (isError) {
         content = <p className="errmsg">{error ?.data ?.message}</p>
@@ -27,11 +28,9 @@ const UsersList = () => {
 
         const { ids } = users
 
-        const tableContent = ids ?.length
-            ? ids.map(userId => <User key={userId} userId={userId} />)
-            : null
+        const tableContent = ids ?.length && ids.map(userId => <User key={userId} userId={userId} />)
 
-            content = (
+        content = (
             <table className="table table--users">
                 <thead className="table__thead">
                     <tr>
@@ -47,8 +46,6 @@ const UsersList = () => {
         )
     }
 
-
     return content
 }
-
 export default UsersList
